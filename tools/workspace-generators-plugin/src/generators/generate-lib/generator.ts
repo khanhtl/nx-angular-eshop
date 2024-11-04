@@ -33,7 +33,7 @@ async function generateLibrary(
     simpleName: true,
     standalone: true,
     buildable: true,
-    prefix: `es-libs-${type}`,
+    prefix: `es-libs-${options.domain}-${type}`,
     style: 'scss',
     changeDetection: 'OnPush',
     directory: `libs/${options.domain}/${type}/${options.name}`,

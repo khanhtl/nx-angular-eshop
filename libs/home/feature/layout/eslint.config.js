@@ -30,7 +30,7 @@ module.exports = [
         'error',
         {
           type: 'element',
-          prefix: 'es-libs-feature',
+          prefix: 'es-libs-home',
           style: 'kebab-case',
         },
       ],
