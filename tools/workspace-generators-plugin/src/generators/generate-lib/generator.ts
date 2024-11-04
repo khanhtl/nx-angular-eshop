@@ -29,11 +29,11 @@ async function generateLibrary(
   type: string
 ) {
   await libraryGenerator(tree, {
-    name: options.name,
+    name: `${options.domain}-${type}-${options.name}`,
     simpleName: true,
     standalone: true,
     buildable: true,
-    prefix: `es-libs-${options.domain}-${type}`,
+    prefix: `es-libs-${options.domain}`,
     style: 'scss',
     changeDetection: 'OnPush',
     directory: `libs/${options.domain}/${type}/${options.name}`,

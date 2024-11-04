@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@es-libs/home/feature/layout": ["libs/home/feature/layout/src/index.ts"],
+      "@es-libs/product/data-access/category": [
+        "libs/product/data-access/category/src/index.ts"
+      ],
       "@eshop/workspace-generators-plugin": [
         "tools/workspace-generators-plugin/src/index.ts"
       ]
