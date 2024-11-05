@@ -1,0 +1,9 @@
+<div>
+  @if(!isLoading_()) { @for (p of products_(); track p.id) {
+  <pre>{{ p | json }}</pre>
+  } } @else { loading... } @if(error_()) {
+  <pre>
+    {{ error_() | json }}
+  </pre>
+  }
+</div>

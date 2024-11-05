@@ -19,6 +19,12 @@
       "@es-libs/product/data-access/category": [
         "libs/product/data-access/category/src/index.ts"
       ],
+      "@es-libs/product/data-access/product": [
+        "libs/product/data-access/product/src/index.ts"
+      ],
+      "@es-libs/product/feature/product": [
+        "libs/product/feature/product/src/index.ts"
+      ],
       "@eshop/workspace-generators-plugin": [
         "tools/workspace-generators-plugin/src/index.ts"
       ]
