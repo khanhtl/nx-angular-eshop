@@ -17,8 +17,16 @@ module.exports = [
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
           depConstraints: [
             {
-              sourceTag: '*',
+              sourceTag: 'shell',
               onlyDependOnLibsWithTags: ['*'],
+            },
+            {
+              sourceTag: 'domain:product',
+              onlyDependOnLibsWithTags: ['domain:product'],
+            },
+            {
+              sourceTag: 'domain:home',
+              onlyDependOnLibsWithTags: ['domain:home'],
             },
           ],
         },
