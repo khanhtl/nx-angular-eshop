@@ -22,11 +22,11 @@ module.exports = [
             },
             {
               sourceTag: 'domain:product',
-              onlyDependOnLibsWithTags: ['domain:product'],
+              onlyDependOnLibsWithTags: ['domain:product', 'type:data-access'],
             },
             {
               sourceTag: 'domain:home',
-              onlyDependOnLibsWithTags: ['domain:home'],
+              onlyDependOnLibsWithTags: ['domain:home', 'type:data-access'],
             },
           ],
         },

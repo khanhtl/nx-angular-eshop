@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, exhaustMap, map } from 'rxjs';
+import { catchError, EMPTY, map, mergeMap } from 'rxjs';
 import { CategoryActions } from './category.action';
 import { CategoryService } from './category.service';
 
@@ -12,7 +12,7 @@ export class CategoryEffects {
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CategoryActions.getCategories),
-      exhaustMap(() =>
+      mergeMap(() =>
         this.#categoryService.getCategories().pipe(
           map((categories) =>
             CategoryActions.getCategoriesSuccess({ categories })

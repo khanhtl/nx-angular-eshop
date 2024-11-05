@@ -1,11 +1,14 @@
-import { createSelector } from '@ngrx/store';
-import { CategoryState } from './category.reducer';
+import {
+  createFeature,
+  createFeatureSelector,
+  createSelector,
+} from '@ngrx/store';
+import { categoryReducer, CategoryState } from './category.reducer';
 
-export const selectCategoryState = ({
-  category,
-}: {
-  category: CategoryState;
-}) => category;
+const categoryFeatureKey = 'category';
+
+export const selectCategoryState =
+  createFeatureSelector<CategoryState>(categoryFeatureKey);
 export const selectCategories = createSelector(
   selectCategoryState,
   (state: CategoryState) => state.categories
@@ -14,3 +17,8 @@ export const selectError = createSelector(
   selectCategoryState,
   (state: CategoryState) => state.error
 );
+
+export const categoryFeature = createFeature({
+  name: categoryFeatureKey,
+  reducer: categoryReducer,
+});
