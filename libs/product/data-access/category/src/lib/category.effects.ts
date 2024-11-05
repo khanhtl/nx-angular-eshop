@@ -1,25 +1,26 @@
-import { inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, EMPTY, exhaustMap, map } from 'rxjs';
-import { CategoryActions } from './category.action';
+import { catchError, map, mergeMap, of } from 'rxjs';
+import { categoryActions, categoryActionsAPI } from './category.action';
 import { CategoryService } from './category.service';
 
-@Injectable()
-export class CategoryEffects {
-  #categoryService = inject(CategoryService);
-  actions$ = inject(Actions);
-
-  loadCategories$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(CategoryActions.getCategories),
-      exhaustMap(() =>
-        this.#categoryService.getCategories().pipe(
+export const categoryEffects = createEffect(
+  (actions$ = inject(Actions), categoryService = inject(CategoryService)) => {
+    return actions$.pipe(
+      ofType(categoryActions.load),
+      mergeMap(() =>
+        categoryService.getCategories().pipe(
           map((categories) =>
-            CategoryActions.getCategoriesSuccess({ categories })
+            categoryActionsAPI.getCategoriesSuccess({ categories })
           ),
-          catchError(() => EMPTY)
+          catchError((error) =>
+            of(categoryActionsAPI.getCategoriesFailure({ error }))
+          )
         )
       )
-    )
-  );
-}
+    );
+  },
+  {
+    functional: true,
+  }
+);
