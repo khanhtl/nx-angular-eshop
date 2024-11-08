@@ -23,7 +23,7 @@ const reducer = createReducer(
     isLoading: true,
   })),
 
-  on(categoryActionsAPI.getCategoriesSuccess, (state, { categories }) => {
+  on(categoryActionsAPI.loadCategoriesSuccess, (state, { categories }) => {
     return {
       ...state,
       categories,
@@ -31,7 +31,7 @@ const reducer = createReducer(
       error: undefined,
     };
   }),
-  on(categoryActionsAPI.getCategoriesFailure, (state, { error }) => {
+  on(categoryActionsAPI.loadCategoriesFailure, (state, { error }) => {
     return {
       ...state,
       categories: [],

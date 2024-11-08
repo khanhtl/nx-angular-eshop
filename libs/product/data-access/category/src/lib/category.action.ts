@@ -3,8 +3,8 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 export const categoryActionsAPI = createActionGroup({
   source: 'Categories API',
   events: {
-    'Get Categories Success': props<{ categories: string[] }>(),
-    'Get Categories Failure': props<{ error: unknown }>(),
+    'Load Categories Success': props<{ categories: string[] }>(),
+    'Load Categories Failure': props<{ error: unknown }>(),
   },
 });
 

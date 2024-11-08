@@ -9,6 +9,13 @@
   >
     <mat-toolbar>Category</mat-toolbar>
     <mat-nav-list>
+      <a
+        mat-list-item
+        routerLinkActive="link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['product']"
+        >All</a
+      >
       @if(isLoading_()) { Loading... } @else { @for (category of categories_();
       track category) {
       <a
@@ -36,6 +43,6 @@
       <span>Nx Angualr Eshop</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <router-outlet />
+    <main><router-outlet /></main>
   </mat-sidenav-content>
 </mat-sidenav-container>

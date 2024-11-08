@@ -11,10 +11,10 @@ export const categoryEffects = createEffect(
       mergeMap(() =>
         categoryService.getCategories().pipe(
           map((categories) =>
-            categoryActionsAPI.getCategoriesSuccess({ categories })
+            categoryActionsAPI.loadCategoriesSuccess({ categories })
           ),
           catchError((error) =>
-            of(categoryActionsAPI.getCategoriesFailure({ error }))
+            of(categoryActionsAPI.loadCategoriesFailure({ error }))
           )
         )
       )

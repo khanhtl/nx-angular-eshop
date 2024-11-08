@@ -8,7 +8,11 @@ import { Product } from './product.model';
 export class ProductService {
   private readonly http = inject(HttpClient);
 
-  getProductsFroCategory(category: string) {
+  getProducts() {
+    return this.http.get<Product[]>(`https://fakestoreapi.com/products`);
+  }
+
+  getProductsForCategory(category: string) {
     return this.http.get<Product[]>(
       `https://fakestoreapi.com/products/category/${category}`
     );

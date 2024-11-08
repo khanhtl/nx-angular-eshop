@@ -1,0 +1,28 @@
+:host {
+  min-width: 0;
+  width: auto;
+  .product-card {
+    width: auto;
+  }
+  .product-card__image {
+    height: 200px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    img {
+      height: 100%;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+    }
+  }
+  .product-card__title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .product-card__action {
+    gap: 12px;
+  }
+}
