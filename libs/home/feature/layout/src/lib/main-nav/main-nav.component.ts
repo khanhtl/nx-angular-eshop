@@ -1,6 +1,7 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, TitleCasePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -28,6 +29,7 @@ import { map, shareReplay } from 'rxjs/operators';
     RouterLinkActive,
     RouterOutlet,
     TitleCasePipe,
+    MatBadgeModule,
   ],
 })
 export class MainNavComponent {
