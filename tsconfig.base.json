@@ -25,6 +25,9 @@
       "@es-libs/product/feature/product": [
         "libs/product/feature/product/src/index.ts"
       ],
+      "@es-libs/product/ui/components": [
+        "libs/product/ui/components/src/index.ts"
+      ],
       "@eshop/workspace-generators-plugin": [
         "tools/workspace-generators-plugin/src/index.ts"
       ]

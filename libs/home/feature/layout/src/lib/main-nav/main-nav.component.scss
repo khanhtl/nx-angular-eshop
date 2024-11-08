@@ -19,3 +19,14 @@
 .link-active {
   background: #e0e0e0;
 }
+
+.mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  main {
+    margin: 16px;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+  }
+}

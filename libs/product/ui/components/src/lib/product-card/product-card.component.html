@@ -1,0 +1,21 @@
+<mat-card class="product-card" appearance="outlined">
+  <div class="product-card__image">
+    <img
+      mat-card-image
+      src="{{ product().image }}"
+      alt="{{ product().title }}"
+    />
+  </div>
+
+  <mat-card-content>
+    <mat-card-subtitle
+      title="{{ product().title }}"
+      class="product-card__title"
+      >{{ product().title }}</mat-card-subtitle
+    >
+  </mat-card-content>
+  <mat-card-actions class="product-card__action">
+    <button mat-flat-button color="primary">Buy now</button>
+    <button mat-flat-button color="accent">Add to cart</button>
+  </mat-card-actions>
+</mat-card>

@@ -4,17 +4,38 @@ import { catchError, map, mergeMap, of } from 'rxjs';
 import { productActions, productActionsAPI } from './product.action';
 import { ProductService } from './product.service';
 
-export const productEffects = createEffect(
+export const loadproductsByCategoryEffects = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
       ofType(productActions.load),
       mergeMap(({ category }) =>
-        productService.getProductsFroCategory(category).pipe(
+        productService.getProductsForCategory(category).pipe(
           map((products) =>
-            productActionsAPI.getProductsForCategorySuccess({ products })
+            productActionsAPI.loadProductsSuccess({ products })
           ),
           catchError((error) =>
-            of(productActionsAPI.getProductsForCategoryFailure({ error }))
+            of(productActionsAPI.loadProductsFailure({ error }))
+          )
+        )
+      )
+    );
+  },
+  {
+    functional: true,
+  }
+);
+
+export const loadproductsEffects = createEffect(
+  (actions$ = inject(Actions), productService = inject(ProductService)) => {
+    return actions$.pipe(
+      ofType(productActions.loadAll),
+      mergeMap(() =>
+        productService.getProducts().pipe(
+          map((products) =>
+            productActionsAPI.loadProductsSuccess({ products })
+          ),
+          catchError((error) =>
+            of(productActionsAPI.loadProductsFailure({ error }))
           )
         )
       )
