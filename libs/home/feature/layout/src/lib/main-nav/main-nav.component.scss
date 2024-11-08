@@ -20,6 +20,10 @@
   background: #e0e0e0;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
 .mat-sidenav-content {
   display: flex;
   flex-direction: column;
