@@ -1,13 +1,18 @@
 import { JsonPipe } from '@angular/common';
-import { Component, inject, input, OnInit } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
-  productActions,
-  productFeature,
-} from '@es-libs/product/data-access/product';
+  Component,
+  computed,
+  effect,
+  inject,
+  Injector,
+  input,
+  runInInjectionContext,
+} from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProductService } from '@es-libs/product/data-access/product';
 import { ProductCardComponent } from '@es-libs/product/ui/components';
-import { Store } from '@ngrx/store';
+import { injectQuery } from '@tanstack/angular-query-experimental';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'es-libs-product',
@@ -15,25 +20,42 @@ import { Store } from '@ngrx/store';
   imports: [JsonPipe, ProductCardComponent, MatProgressSpinnerModule],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-  host: {
-    '[class.loading]': 'isLoading_()',
-  },
 })
-export class ProductComponent implements OnInit {
-  store = inject(Store);
+export class ProductComponent {
+  productService = inject(ProductService);
+  injector = inject(Injector);
   category = input<string>();
-  category$ = toObservable(this.category);
 
-  products_ = this.store.selectSignal(productFeature.selectProducts);
-  isLoading_ = this.store.selectSignal(productFeature.selectIsLoading);
-  error_ = this.store.selectSignal(productFeature.selectError);
-  ngOnInit(): void {
-    this.category$.subscribe((category?: string) => {
-      if (category) {
-        this.store.dispatch(productActions.load({ category }));
-      } else {
-        this.store.dispatch(productActions.loadAll());
-      }
+  queryKey = computed(() => {
+    return this.category() ? ['products', this.category()] : ['products'];
+  });
+  queryFn = computed(() => {
+    return this.category()
+      ? () =>
+          lastValueFrom(
+            this.productService.getProductsForCategory(this.category()!)
+          )
+      : () => lastValueFrom(this.productService.getProducts());
+  });
+
+  createProductQuery() {
+    return injectQuery(() => ({
+      queryKey: this.queryKey(),
+      queryFn: this.queryFn(),
+      staleTime: Infinity,
+      gcTime: Infinity,
+    }));
+  }
+  query = this.createProductQuery();
+  products_ = this.query.data;
+  status_ = this.query.status;
+  error_ = this.query.error;
+
+  constructor() {
+    effect(() => {
+      runInInjectionContext(this.injector, () => {
+        this.query = this.createProductQuery();
+      });
     });
   }
 }

@@ -24,6 +24,7 @@
     "@ngrx/store-devtools": "^18.1.1",
     "@nx/devkit": "20.0.8",
     "@nx/plugin": "^20.0.8",
+    "@tanstack/angular-query-experimental": "^5.60.0",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.3"
   },
