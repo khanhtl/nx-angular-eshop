@@ -18,11 +18,18 @@ import {
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import {
+  provideTanStackQuery,
+  QueryClient,
+  withDevtools,
+} from '@tanstack/angular-query-experimental';
 import { appRoutes } from './app.routes';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
+    provideTanStackQuery(new QueryClient(), withDevtools()),
     provideRouter(
       appRoutes,
       withEnabledBlockingInitialNavigation(),
