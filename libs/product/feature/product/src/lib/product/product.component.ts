@@ -33,20 +33,19 @@ export class ProductComponent {
     return this.category()
       ? () =>
           lastValueFrom(
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             this.productService.getProductsForCategory(this.category()!)
           )
       : () => lastValueFrom(this.productService.getProducts());
   });
 
-  createProductQuery() {
+  private createProductQuery() {
     return injectQuery(() => ({
       queryKey: this.queryKey(),
       queryFn: this.queryFn(),
-      staleTime: Infinity,
-      gcTime: Infinity,
     }));
   }
-  query = this.createProductQuery();
+  private query = this.createProductQuery();
   products_ = this.query.data;
   status_ = this.query.status;
   error_ = this.query.error;
