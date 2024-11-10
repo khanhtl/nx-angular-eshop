@@ -29,7 +29,17 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
-    provideTanStackQuery(new QueryClient(), withDevtools()),
+    provideTanStackQuery(
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: Infinity,
+            gcTime: Infinity,
+          },
+        },
+      }),
+      withDevtools()
+    ),
     provideRouter(
       appRoutes,
       withEnabledBlockingInitialNavigation(),
