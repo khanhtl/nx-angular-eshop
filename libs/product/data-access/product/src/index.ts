@@ -1,5 +1,3 @@
-export * from './lib/product.action';
-export * as productEffects from './lib/product.effects';
 export * from './lib/product.model';
 export * from './lib/product.service';
-export * from './lib/product.state';
+export * from './lib/product.store';
