@@ -1,12 +1,10 @@
-@switch (status_()) { @case ('pending') {
+@if(!store.isLoading()) { @for (p of store.products(); track p.id) {
+<es-libs-product-product-card [product]="p" />
+} } @else {
 <mat-spinner></mat-spinner>
-} @case ('error') {
+} @if(store.error()) {
 <pre>
-      {{ error_() | json }}
+      {{ store.error() | json }}
     </pre
 >
-} @case ('success') { @for (p of products_(); track p.id) {
-<es-libs-product-product-card [product]="p" />
-} } @default {
-<mat-spinner></mat-spinner>
-} }
+}

@@ -1,7 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
-  isDevMode,
   provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -10,45 +9,18 @@ import {
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import {
-  categoryEffects,
-  categoryFeature,
-} from '@es-libs/product/data-access/category';
 
-import { provideEffects } from '@ngrx/effects';
-import { provideState, provideStore } from '@ngrx/store';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
-import {
-  provideTanStackQuery,
-  QueryClient,
-  withDevtools,
-} from '@tanstack/angular-query-experimental';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideHttpClient(),
-    provideTanStackQuery(
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: Infinity,
-            gcTime: Infinity,
-          },
-        },
-      }),
-      withDevtools()
-    ),
     provideRouter(
       appRoutes,
       withEnabledBlockingInitialNavigation(),
       withComponentInputBinding()
     ),
     provideAnimationsAsync(),
-    provideStore(),
-    provideState(categoryFeature),
-    provideEffects(categoryEffects),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

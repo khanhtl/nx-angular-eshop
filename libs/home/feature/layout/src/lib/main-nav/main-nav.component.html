@@ -16,8 +16,8 @@
         [routerLink]="['product']"
         >All</a
       >
-      @if(isLoading_()) { Loading... } @else { @for (category of categories_();
-      track category) {
+      @if(categoryStore.isLoading()) { Loading... } @else { @for (category of
+      categoryStore.categories(); track category) {
       <a
         mat-list-item
         routerLinkActive="link-active"
