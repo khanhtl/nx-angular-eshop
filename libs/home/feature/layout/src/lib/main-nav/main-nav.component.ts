@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CartStore } from '@es-libs/cart/data-access/cart';
 import { CategoryStore } from '@es-libs/product/data-access/category';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -33,6 +34,7 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class MainNavComponent {
   readonly categoryStore = inject(CategoryStore);
+  readonly cartStore = inject(CartStore);
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver

@@ -15,6 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@es-libs/cart/data-access/cart": [
+        "libs/cart/data-access/cart/src/index.ts"
+      ],
+      "@es-libs/cart/feature/cart": ["libs/cart/feature/cart/src/index.ts"],
       "@es-libs/home/feature/layout": ["libs/home/feature/layout/src/index.ts"],
       "@es-libs/product/data-access/category": [
         "libs/product/data-access/category/src/index.ts"
