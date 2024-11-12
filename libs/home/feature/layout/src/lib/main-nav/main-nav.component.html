@@ -42,13 +42,17 @@
       }
       <span>Nx Angualr Eshop</span>
       <div class="spacer"></div>
-      <button
-        mat-icon-button
-        class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon"
-      >
-        <mat-icon matBadgeColor="accent" matBadge="15">shopping_cart</mat-icon>
-      </button>
+      <a [routerLink]="['cart']" class="cart-button">
+        <button
+          mat-icon-button
+          class="example-icon favorite-icon"
+          aria-label="Example icon-button with heart icon"
+        >
+          <mat-icon matBadgeColor="accent" [matBadge]="cartStore.countCart()"
+            >shopping_cart</mat-icon
+          >
+        </button>
+      </a>
     </mat-toolbar>
     <!-- Add Content Here -->
     <main><router-outlet /></main>

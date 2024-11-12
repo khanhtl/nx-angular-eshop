@@ -1,0 +1,36 @@
+{
+  "name": "cart-data-access-cart",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/cart/data-access/cart/src",
+  "prefix": "es-libs-cart",
+  "projectType": "library",
+  "tags": ["domain:cart", "type:data-access"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/cart/data-access/cart/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/cart/data-access/cart/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/cart/data-access/cart/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/cart/data-access/cart/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

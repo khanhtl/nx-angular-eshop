@@ -20,4 +20,9 @@ export const appRoutes: Route[] = [
         (m) => m.ProductComponent
       ),
   },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('@es-libs/cart/feature/cart').then((m) => m.CartComponent),
+  },
 ];
